@@ -5,6 +5,7 @@ import "../styles/HomePage.css";
 
 interface HomePageProps {
   onSearch: (query: string) => void;
+  onNavigateToAbout?: () => void;
 }
 
 const HomePage: React.FC<HomePageProps> = ({ onSearch }) => {
