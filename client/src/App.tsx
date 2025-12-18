@@ -6,6 +6,7 @@ import AboutUs from "./components/AboutUs";
 import CountryPage from "./components/CountryPage";
 import "./styles/App.css";
 import AnalyticsDashboard from "./components/AnalyticsDashboard";
+import OfflineStatus from "./components/OfflineStatus";
 
 export interface Case {
   type: string;
@@ -36,8 +37,6 @@ function App() {
     loading: false,
     error: null,
   });
-
-
 
   const handleSearch = async (query: string) => {
     if (!query.trim()) return;
@@ -73,8 +72,6 @@ function App() {
     }
   };
 
-
-
   const handleBackToSearch = () => {
     navigate("/");
     setSearchState((prev) => ({
@@ -87,15 +84,21 @@ function App() {
 
   return (
     <div className="app">
+      <OfflineStatus />
       <Routes>
-        <Route path="/" element={<HomePage onSearch={handleSearch} onNavigateToBrowse={function (): void {
-          throw new Error("Function not implemented.");
-        } } />} />
-        <Route path="/about" element={<AboutUs />} />
         <Route
-          path="/statistics"
-          element={<AnalyticsDashboard  />}
+          path="/"
+          element={
+            <HomePage
+              onSearch={handleSearch}
+              onNavigateToBrowse={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          }
         />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/statistics" element={<AnalyticsDashboard />} />
 
         <Route
           path="/search"
